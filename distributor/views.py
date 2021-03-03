@@ -9,9 +9,3 @@ def get_drf_products(request):
     products = Product.objects.all()
     data = ProductSerializer(products, many=True).data
     return Response(data=data)
-
-# @api_view(['GET'])
-# def get_drf_products(request):
-#     tag = Tag.objects.all()
-#     data = TagNameSerializer(tag, many=True).data
-#     return Response(data=data)
