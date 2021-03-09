@@ -23,3 +23,4 @@ urlpatterns = [
     path('api/v1/categorys/', views.new_category),
     path('api/v1/tags/', views.new_tag),
 ]
+
