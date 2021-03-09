@@ -1,9 +1,32 @@
+from django.db.models import Q
 from django.shortcuts import render
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
+from rest_framework.views import APIView
+
 from  .serializers import ProductSerializer, CategorySerializer, TagNameSerializer
 from distributor.models import Product, Tag, Category
 from rest_framework.decorators import api_view
+
+class ListCreateProductAPI(APIView, PageNumberPagination):
+    allowed_methods = ['get', 'post']
+    def get(self, request):
+        search_word = request.query_params.get('search_word', '')
+        # category_id = request.query_params.get('category')
+        products = Product.objects.filter(Q(title__icontains=search_word) | Q(text__icontains=search_word))
+                                          # category_id=category_id))
+        # data = ProductSerializer(products, many=True).data
+        results = self.paginate_queryset(products, request, view=self)
+        return self.get_paginated_response(ProductSerializer(results, many=True).data)
+
+    def post(self, request):
+        title = request.data.get('title')
+        text = request.data.get('text')
+        category_id = int(request.data.get('category_id'))
+        product = Product.objects.create(title=title, text=text, category_id=category_id)
+        product.save()
+        return Response(status=status.HTTP_200_OK, data=ProductSerializer(product).data)
 
 @api_view(['GET', 'POST'])
 def get_drf_products(request):
