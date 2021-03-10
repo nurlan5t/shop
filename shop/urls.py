@@ -20,7 +20,7 @@ from distributor import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/products/', views.ListCreateProductAPI.as_view()),
-    path('api/v1/categorys/', views.new_category),
-    path('api/v1/tags/', views.new_tag),
+    path('api/v1/categorys/', views.ListCreateCategoryAPI.as_view()),
+    path('api/v1/tags/', views.ListCreateCategoryAPI.as_view()),
 ]
 
