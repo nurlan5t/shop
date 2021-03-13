@@ -16,11 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from distributor import views
+from users import views as login_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/products/', views.ListCreateProductAPI.as_view()),
     path('api/v1/categorys/', views.ListCreateCategoryAPI.as_view()),
     path('api/v1/tags/', views.ListCreateCategoryAPI.as_view()),
+    path('api/v1/login/', login_views.LoginView.as_view()),
 ]
 
