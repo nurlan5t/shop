@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/v1/categorys/', views.ListCreateCategoryAPI.as_view()),
     path('api/v1/tags/', views.ListCreateCategoryAPI.as_view()),
     path('api/v1/login/', login_views.LoginView.as_view()),
+    path('api/v1/register/', login_views.RegisterView.as_view())
 ]
 

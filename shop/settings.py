@@ -134,3 +134,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.User'
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = "nur23kg@mail.ru"
+EMAIL_HOST_PASSWORD = "trias23M"
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
