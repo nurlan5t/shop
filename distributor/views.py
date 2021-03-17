@@ -6,13 +6,14 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from users.permissions import IsClient
 from  .serializers import ProductSerializer, CategorySerializer, TagNameSerializer
 from distributor.models import Product, Tag, Category
 from rest_framework.decorators import api_view
 
 class ListCreateProductAPI(APIView, PageNumberPagination):
     allowed_methods = ['get', 'post']
-    permission_classes = [AllowAny]
+    permission_classes = [IsClient]
     def get(self, request):
         search_word = request.query_params.get('search_word', '')
         # category_id = request.query_params.get('category')
